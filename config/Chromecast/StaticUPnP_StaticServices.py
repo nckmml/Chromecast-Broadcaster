@@ -15,7 +15,7 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-import socket
+import socket, os
 
 from dnslib import DNSQuestion, QTYPE
 
@@ -57,12 +57,12 @@ USN: {uuid}
 
 """
 
-chromecast_ip = socket.gethostbyname_ex("Chromecast")[2][0]
+chromecast_ip = os.environ['CHROMECASTIP']
 chromecast_port = 8008
 
 chromecast_service_descriptor = get_service_descriptor(chromecast_ip, chromecast_port)
 chromecast_uuid = get_chromecast_uuid(chromecast_service_descriptor)
-chromecast_friendly_name = get_chromecast_friendly_name(chromecast_service_descriptor)
+chromecast_friendly_name = os.environ['CHROMCASTNAME']
 chromecast_bs = "XXXXXXXXXXXX"
 chromecast_cd = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 
